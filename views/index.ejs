@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All posts</title>
+   
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 class="mainhead">Query Space Posts</h1>
+        <% if(req.session.username) { %>
+            <a href="http://localhost:8080/posts/new" class="button-75">Create New Post</a>
+        <% } else { %>
+            <a href="http://localhost:8080/login" class="button-75">Login As Student/Faculty</a>
+        <% } %>
+    </div>
+    
+    <% for(post of posts){ %>
+        <div class="post">
+            <h2 class="user mainhead">@<%= post.username %></h2>
+            <h2 class="content"><%= post.content %></h2>
+            <br>
+           
+                
+            <button class="button-33" onclick="window.location.href='http://localhost:8080/posts/<%= post.id %>';">See in Detail(View Answer)</button>
+            <% if (post.username == req.session.username) { %>
+                <button class="button-33" onclick="window.location.href='http://localhost:8080/posts/<%= post.id %>/edit';">Edit Post</button>
+            <% } %>
+            <% if (req.session.category == "faculty") { %>
+                <button class="button-33" onclick="window.location.href='http://localhost:8080/posts/<%= post.id %>/answer';">Answer Query</button>
+            <% } %>
+            
+            
+           <br><br>
+           <% if (req.session.category == "faculty"||req.session.username==post.username) { %>
+            <form method="post" action="/posts/<%=post.id%>?_method=DELETE">
+                <button class="button-33">Delete Post</button>
+            </form>
+           <% } %>
+           
+            
+        </div>
+    <% }%>
+    
+    
+</body>
+</html>

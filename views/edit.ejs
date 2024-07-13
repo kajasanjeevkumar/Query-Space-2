@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Your Post</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+        body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .container {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 80%;
+        max-width: 600px;
+        text-align: center;
+    }
+
+    h2 {
+        color: #333;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+</style>
+<body>
+    <div class="container">
+        <h2>Edit Your Post</h2>
+        <p><b>Post ID:</b> <%= post.id %></p>
+        <p><b>Post Username:</b> @<%= post.username %></p>
+        <form method="post" action="/posts/<%= post.id %>?_method=PATCH">
+            <textarea cols="35" rows="10" name="content" placeholder="Edit your post content here..." required><%= post.content %></textarea>
+            <br><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
