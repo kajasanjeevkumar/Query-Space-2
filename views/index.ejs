@@ -13,8 +13,10 @@
         <h1 class="mainhead">Query Space Posts</h1>
         <% if(req.session.username) { %>
             <a href="http://localhost:8080/posts/new" class="button-75">Create New Post</a>
+            <a href="http://localhost:8080/logout" class="logout">Logout</a>
         <% } else { %>
-            <a href="http://localhost:8080/login" class="button-75">Login As Student/Faculty</a>
+            <a href="http://localhost:8080/posts/new" class="button-75-1">Create New Post</a>
+            <a href="http://localhost:8080/login" class="logout">Login As Student/Faculty</a>
         <% } %>
     </div>
     
