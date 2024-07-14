@@ -68,6 +68,16 @@ let faculty_login=[
 app.get("/login",(req,res)=>{
     res.render("login.ejs");
 });
+app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.render("index", { posts, req: { session: { username: null } } }); // Redirect in case of an error while destroying the session // Redirect in case of an error while destroying the session
+        }
+        res.clearCookie("connect.sid"); // Clear the cookie that stored the session ID
+        return res.render("index", { posts, req: { session: { username: null } } }); // Redirect in case of an error while destroying the session
+    });
+});
+
 app.post("/verify_student_login", (req, res) => {
     let { uname, psw } = req.body;
     let flag = 0;
