@@ -38,6 +38,12 @@ let posts=[
         username:"Manikanta",
         content:"How to pay college fee online?",
         answer:"Go to college website and select payment option"
+    },
+    {
+        id:uuidv4(),
+        username:"Rahul",
+        content:"How to improve CGPA?",
+        answer:"To improve your CGPA, focus on understanding course material deeply and manage your study time effectively. Seek help when needed and consistently review and practice your subjects."
     }
 ]
 let student_login=[
