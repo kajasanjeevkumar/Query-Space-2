@@ -20,32 +20,33 @@
         <% } %>
     </div>
     
-    <% for(post of posts){ %>
+    <div class="grid">
+        <% for(post of posts){ %>
         <div class="post">
             <h2 class="user mainhead">@<%= post.username %></h2>
             <h2 class="content"><%= post.content %></h2>
             <br>
            
+            <div class="btns">
+                <button class="button-33" onclick="window.location.href='http://localhost:8080/posts/<%= post.id %>';">View Answer</button>
+                <% if (post.username == req.session.username) { %>
+                    <button class="button-33" onclick="window.location.href='http://localhost:8080/posts/<%= post.id %>/edit';">Edit Post</button>
+                <% } %>
+                <% if (req.session.category == "faculty") { %>
+                    <button class="button-33" onclick="window.location.href='http://localhost:8080/posts/<%= post.id %>/answer';">Answer Query</button>
+                <% } %>
                 
-            <button class="button-33" onclick="window.location.href='http://localhost:8080/posts/<%= post.id %>';">See in Detail(View Answer)</button>
-            <% if (post.username == req.session.username) { %>
-                <button class="button-33" onclick="window.location.href='http://localhost:8080/posts/<%= post.id %>/edit';">Edit Post</button>
-            <% } %>
-            <% if (req.session.category == "faculty") { %>
-                <button class="button-33" onclick="window.location.href='http://localhost:8080/posts/<%= post.id %>/answer';">Answer Query</button>
-            <% } %>
-            
-            
-           <br><br>
-           <% if (req.session.category == "faculty"||req.session.username==post.username) { %>
-            <form method="post" action="/posts/<%=post.id%>?_method=DELETE">
-                <button class="button-33">Delete Post</button>
-            </form>
-           <% } %>
-           
+   
+                <% if (req.session.category == "faculty"||req.session.username==post.username) { %>
+                    <form method="post" action="/posts/<%=post.id%>?_method=DELETE" style="display: inline; margin-right: 1rem;">
+                        <button class="button-33">Delete Post</button>
+                    </form> 
+                <% } %>
+           </div>
             
         </div>
     <% }%>
+    </div>
     
     
 </body>
